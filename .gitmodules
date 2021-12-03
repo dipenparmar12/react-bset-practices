@@ -1,0 +1,3 @@
+[submodule "src/js_utils"]
+	path = src/js_utils
+	url = git@github.com:dipenparmar12/javascript_utils.git
