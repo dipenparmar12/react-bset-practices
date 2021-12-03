@@ -1,6 +1,6 @@
 import React from 'react'
-import obj from '../utils/obj'
-import Types from '../utils/Types'
+import obj from '../js_utils/obj'
+import Types from '../js_utils/Types'
 
 export const isFunction = Types.isFunction
 
