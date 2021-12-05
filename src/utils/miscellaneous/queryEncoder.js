@@ -1,9 +1,9 @@
 /* eslint-disable */
 /**
- *
  * Query String builder from object or nested objects.
  * @param {Object} initialObj
  * @return {String}
+ * @src https://stackoverflow.com/a/66330140
  */
 function queryEncoder(initialObj = {}) {
   if (!initialObj) return ''
@@ -12,7 +12,7 @@ function queryEncoder(initialObj = {}) {
     key = encodeURIComponent(key)
     const prefix = parentPrefix ? `${parentPrefix}[${key}]` : key
 
-    if (val == null || typeof val === 'function') {
+    if (val === null || typeof val === 'function') {
       prev.push(`${prefix}=`)
       return prev
     }
