@@ -13,7 +13,7 @@ axiosApp.interceptors.request.use(function (config) {
 })
 
 export const auth = {
-  get: async (qry) => await axiosApp.get(`/auth?${queryEncoder(qry)}`),
+  get: async (obj) => await axiosApp.get(`/auth?${objToQueryString(obj)}`),
   register: async (d) => await axiosApp.post(`/auth?`, d),
   login: async (d) => await axiosApp.post(`/auth`, d),
   logout: async () => await axiosApp.get(`/auth`),
@@ -35,7 +35,8 @@ export const users = {
 
 export const projects = {
   entry: async (id) => await axiosApp.get(`/projects/${id}`),
-  get: async (qry, c) => await axiosApp.get(`/projects${queryEncoder(qry)}`, c),
+  get: async (obj, c) =>
+    await axiosApp.get(`/projects${objToQueryString(obj)}`, c),
   create: async (d) => await axiosApp.post(`/projects`, d),
   update: async (id, d) => await axiosApp.patch(`/projects/${id}`, d),
   delete: async (id) => await axiosApp.delete(`/projects/${id}`),
@@ -84,7 +85,7 @@ const HttpApi = {
     // ...utils,
     StatusMsg,
     StatusCode,
-    queryEncoder,
+    objectToQueryString: objToQueryString,
   },
 }
 
@@ -96,7 +97,7 @@ export default HttpApi
  * @return {String}
  * @src https://stackoverflow.com/a/66330140
  */
-export function queryEncoder(initialObj = {}) {
+export function objToQueryString(initialObj = {}) {
   if (!initialObj) return ''
   const reducer =
     (obj, parentPrefix = null) =>
