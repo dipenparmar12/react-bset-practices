@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify'
-import Type from '../js_utils/Type'
+import Type from '../utils/Type'
 
 const isString = Type.isString
 

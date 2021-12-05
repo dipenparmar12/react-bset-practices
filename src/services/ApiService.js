@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import queryEncoder from "js_utils/queryEncoder";
-import { format_str } from "../js_utils/capitalize";
-import isString from "../js_utils/isString";
+import queryEncoder from 'utils/queryEncoder'
+import { format_str } from '../utils/capitalize'
+import isString from '../utils/isString'
 import Notify from "./notificationService";
 
 // CLIENT_BASE_URL
