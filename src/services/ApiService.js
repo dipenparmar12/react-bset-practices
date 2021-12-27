@@ -1,7 +1,22 @@
 import axios from 'axios'
 
+// axios.defaults.baseURL = 'http://localhost:8000/api'
 let baseURL = process.env.API_BASE_URL + process.env.API_VERSION
 const axiosApp = axios.create({ baseURL: baseURL })
+
+export const StatusCode = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  PAGE_EXPIRED: 419,
+  UNPROCESSABLE_ENTITY: 422,
+  INTERNAL_SERVER_ERROR: 500,
+}
 
 // Add a request interceptor
 axiosApp.interceptors.request.use(function (config) {
@@ -99,36 +114,34 @@ export default HttpApi
  */
 export function objToQueryString(initialObj = {}) {
   if (!initialObj) return ''
-  const reducer =
-    (obj, parentPrefix = null) =>
-    (prev, key) => {
-      const val = obj[key]
-      key = encodeURIComponent(key)
-      const prefix = parentPrefix ? `${parentPrefix}[${key}]` : key
+  const reducer = (obj, parentPrefix = null) => (prev, key) => {
+    const val = obj[key]
+    key = encodeURIComponent(key)
+    const prefix = parentPrefix ? `${parentPrefix}[${key}]` : key
 
-      if (val === null || typeof val === 'function') {
-        prev.push(`${prefix}=`)
-        return prev
-      }
-
-      /// handle str,num, bool
-      if (['string', 'number', 'boolean'].includes(typeof val)) {
-        prev.push(`${prefix}=${encodeURIComponent(val)}`)
-        return prev
-      }
-
-      /// handle Date Type (send TimeStamp
-      if (typeof val === 'object' && val instanceof Date) {
-        const onlyDate = val.toISOString().split('T')[0] // 2021-02-26
-
-        // const onlyTime = val.toTimeString().split(' ')[0].replace(/:/g, ':')
-        prev.push(`${prefix}=${encodeURIComponent(onlyDate)}`)
-        return prev
-      }
-
-      prev.push(Object.keys(val).reduce(reducer(val, prefix), []).join('&'))
+    if (val === null || typeof val === 'function') {
+      prev.push(`${prefix}=`)
       return prev
     }
+
+    /// handle str,num, bool
+    if (['string', 'number', 'boolean'].includes(typeof val)) {
+      prev.push(`${prefix}=${encodeURIComponent(val)}`)
+      return prev
+    }
+
+    /// handle Date Type (send TimeStamp
+    if (typeof val === 'object' && val instanceof Date) {
+      const onlyDate = val.toISOString().split('T')[0] // 2021-02-26
+
+      // const onlyTime = val.toTimeString().split(' ')[0].replace(/:/g, ':')
+      prev.push(`${prefix}=${encodeURIComponent(onlyDate)}`)
+      return prev
+    }
+
+    prev.push(Object.keys(val).reduce(reducer(val, prefix), []).join('&'))
+    return prev
+  }
 
   return Object.keys(initialObj).reduce(reducer(initialObj), []).join('&')
 }
@@ -219,4 +232,12 @@ try {
 //   //   Notify({ message: description, type: 'error' })
 //   // },
 // }
+*/
+
+/*
+ axios.all([
+    axios.get(`https://api.foursquare.com/v2/venues/trending?ll=40.7222756,-74.0022724&limit=50&oauth_token=${token.accessToken}&v=20140806`),
+    axios.get(`https://api.foursquare.com/v2/venues/49da74aef964a5208b5e1fe3?oauth_token=${token.accessToken}&v=20190113`),
+    axios.get(`https://api.foursquare.com/v2/users/self/checkins?oauth_token=${token.accessToken}&v=20190113`)
+  ])       
 */
