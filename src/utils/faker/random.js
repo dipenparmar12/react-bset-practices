@@ -14,6 +14,9 @@ const Random = {
 
   arr: (len) => Array.from({ length: len }, Math.random),
 
+  arrRandom: (min = 0, max = 10) =>
+    new Array(Random.int(min || 0, max)).fill(null),
+
   item: (arr) => arr[Math.random() * arr.length || 0],
 
   strFromChars: (length, chars) =>
@@ -22,11 +25,17 @@ const Random = {
       .map((v) => chars[Math.floor(Math.random() * chars.length)])
       .join(''),
 
-  arrInRange: (min, max, n) =>
+  arrRange: (min, max, len) =>
     Array.from(
-      { length: n },
+      { length: len },
       () => Math.floor(Math.random() * (max - min + 1)) + min,
     ),
+
+  /// // @src https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
+  range: (start, end) => {
+    const length = end - start + 1
+    return Array.from({ length }, (_, idx) => idx + start)
+  },
 
   itemsFromArr: (arr, count) =>
     arr
