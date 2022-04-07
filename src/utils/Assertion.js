@@ -85,7 +85,7 @@ const Assertion = {
   },
 }
 
-export default Types
+export default Assertion
 
 // const isFunction = (x) => x && (Object.prototype.toString.call(x) === "[object Function]" || "function" === typeof x || x instanceof Function);
 // const isObject = (x) => typeof x === 'object' && x !== null && !Array.isArray(x)

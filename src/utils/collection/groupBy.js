@@ -4,6 +4,7 @@
  * @returns {Array}
  */
 function groupBy(data, key) {
+  if (!data) return []
   return data.reduce((acc, item) => {
     const group = item[key]
     acc[group] = acc[group] || []

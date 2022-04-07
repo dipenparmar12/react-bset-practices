@@ -1,8 +1,8 @@
 import React from 'react'
 import obj from '../utils/obj'
-import Types from '../utils/Types'
+import Assertion from '../utils/Assertion'
 
-export const isFunction = Types.isFunction
+export const isFunction = Assertion.isFunction
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = React.useState(config)
