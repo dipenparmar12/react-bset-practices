@@ -2,19 +2,19 @@
  * Type check
  * */
 const Assertion = {
-  isFunction: function (x) {
+  isFunction(x) {
     return Object.prototype.toString.call(x) === '[object Function]'
   },
-  isString: function (x) {
+  isString(x) {
     return Object.prototype.toString.call(x) === '[object String]'
   },
-  isArray: function (x) {
+  isArray(x) {
     return Object.prototype.toString.call(x) === '[object Array]'
   },
-  isDate: function (x) {
+  isDate(x) {
     return Object.prototype.toString.call(x) === '[object Date]'
   },
-  isObject: function (x) {
+  isObject(x) {
     return Object.prototype.toString.call(x) === '[object Object]'
     //  return typeof x === 'object' && x !== null && !Array.isArray(x)
   },
@@ -28,60 +28,61 @@ const Assertion = {
   //     (x.__proto__ === null || x.__proto__ === Object.prototype)
   //   )
   // },
-  isNull: function (x) {
+  isNull(x) {
     return Object.prototype.toString.call(x) === '[object Null]' || x === null
   },
-  isRegExp: function (n) {
+  isRegExp(x) {
     return (
       //  x !== null &&
       //  x !== undefined &&
       Object.prototype.toString.call(x) === '[object RegExp]'
     )
   },
-  isNumber: function (n) {
+  isNumber(n) {
     return !Number.isNaN(parseFloat(n)) && Number.isFinite(n)
-    //return (n) => /(^-?|^\+?|^\d?)\d*\.\d+$/.test(n + '')
+    // return (n) => /(^-?|^\+?|^\d?)\d*\.\d+$/.test(n + '')
   },
-  isNumeric: function (x) {
+  isNumeric(x) {
     return x != null && x - parseFloat(x) + 1 >= 0
     // @src: https://github.com/chakra-ui/chakra-ui/blob/main/packages/utils/src/assertion.ts#L15
   },
-  isNotNumber: function (x) {
+  isNotNumber(x) {
     return typeof x !== 'number' || Number.isNaN(x) || !Number.isFinite(x)
   },
   isBool: function isBool(x) {
     return x !== null && x !== undefined && [true, false].includes(x)
   },
-  isValue: function (x) {
+  isValue(x) {
     return !this.isObject(x) && !this.isArray(x)
   },
-  isUndefined: function (x) {
+  isUndefined(x) {
     // return x === undefined
     return typeof x === 'undefined' || x === undefined
     // @src: https://github.com/chakra-ui/chakra-ui/blob/main/packages/utils/src/assertion.ts#L40
   },
-  isEmptyObject: function (x) {
+  isEmptyObject(x) {
     return x !== null && !Object.entries(x).length
   },
-  isEmpty: function (x) {
+  isEmpty(x) {
     return (x) =>
       [Object, Array].includes((x || {}).constructor) &&
       !Object.entries(x || {}).length
   },
-  isUrl: function (x) {
+  isUrl(x) {
     // @src https://stackoverflow.com/a/5717133/8592918
     if (Object.prototype.toString.call(x) === '[object String]') {
-      var pattern = new RegExp(
+      const pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
           '(\\#[-a-z\\d_]*)?$',
         'i',
       ) // fragment locator
       return !!pattern.test(x)
     }
+    return false
   },
 }
 
