@@ -64,9 +64,10 @@ const Assertion = {
     return x !== null && !Object.entries(x).length
   },
   isEmpty(x) {
-    return (x) =>
+    return (
       [Object, Array].includes((x || {}).constructor) &&
       !Object.entries(x || {}).length
+    )
   },
   isUrl(x) {
     // @src https://stackoverflow.com/a/5717133/8592918

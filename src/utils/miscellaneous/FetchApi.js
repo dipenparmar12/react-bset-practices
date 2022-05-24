@@ -1,25 +1,27 @@
-const BASE_URL = "http://localhost:8000/";
+const BASE_URL = 'http://localhost:8000/'
 
 const Client = {
-  get: (url, opt) => fetch(BASE_URL + url, Object.assign({ method: "get" }, opt)).then(res => res.json()),
-  post: (url, data) => fetch(BASE_URL + url,
-    {
-      method: "POST",
+  get: (url, opt) =>
+    fetch(BASE_URL + url, Object.assign({ method: 'get' }, opt)).then((res) =>
+      res.json(),
+    ),
+  post: (url, data) =>
+    fetch(BASE_URL + url, {
+      method: 'POST',
       // body: data,
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }).then(res => res.json())
-};
+      headers: { 'Content-Type': 'application/json' },
+    }).then((res) => res.json()),
+}
 
 const Api = {
   users: {
-    create: (...args) => Client.post("users", ...args),
-    get: (qry, ...args) => Client.get(`users?${qry}`, ...args)
-  }
-};
+    create: (...args) => Client.post('users', ...args),
+    get: (qry, ...args) => Client.get(`users?${qry}`, ...args),
+  },
+}
 
-export default Api;
-
+export default Api
 
 /* ------------------------------------
 

@@ -1,4 +1,3 @@
-
 // Query params get, set, omit, and  reset
 let queryString = {
   get: () => {},
@@ -31,14 +30,11 @@ if (typeof window !== 'undefined') {
 
 export default qryParams
 
-
-
 // @src https://stackoverflow.com/a/22753103/8592918
 export function clearQueryParams() {
   window.history.pushState({}, document.title, '?')
   // document.location.pathname
 }
-
 
 /**
  *
@@ -121,13 +117,12 @@ export function updateUrlQryParams(obj) {
   window.history.replaceState(null, null, '?' + queryParams.toString())
 }
 
-
 /**
  * Omit specified keys from ULR query string
  * @param {String} key
  */
 export function omitQueryParam(key) {
-    const url = new URL(window.location.href);
-    url.searchParams.delete(key);
-    window.location.href = url.href;
+  const url = new URL(window.location.href)
+  url.searchParams.delete(key)
+  window.location.href = url.href
 }

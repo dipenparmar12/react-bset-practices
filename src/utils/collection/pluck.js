@@ -1,7 +1,7 @@
 /**
  * Extract values of a property from an array of objects
  * @param {Array[Object]} collection
- * @param {Array} array of items 
+ * @param {Array} array of items
  * @src https://1loc.dev/object/extract-values-of-a-property-from-an-array-of-objects/
  */
 function pluck(collection, property) {
@@ -23,8 +23,6 @@ pluck(
 // ['John', 'Smith', 'Peter']
 
 */
-
-
 
 /**
  * PlunkV2

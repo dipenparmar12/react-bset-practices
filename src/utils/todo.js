@@ -1,3 +1,3 @@
-function action(obj,keys, ...args) {
-    // const _keys = [keys, args].flat()
+function action(obj, keys, ...args) {
+  // const _keys = [keys, args].flat()
 }

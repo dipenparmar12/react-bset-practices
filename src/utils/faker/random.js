@@ -1,5 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable no-bitwise */
+
+// [...Array(100)].map(e => e)
+
 const Random = {
   bool: () => Math.random() >= 0.5,
 

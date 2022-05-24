@@ -5,7 +5,7 @@
  * @src https://stackoverflow.com/a/68536579/8592918,
  *      https://flaviocopes.com/how-to-format-number-as-currency-javascript/
  */
-function currencyFormat(num, currency = 'USD', options = {}) {
+function formatCurrency(num, currency = 'USD', options = {}) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency,
@@ -15,7 +15,7 @@ function currencyFormat(num, currency = 'USD', options = {}) {
   }).format(num)
 }
 
-export default currencyFormat
+export default formatCurrency
 
 // const formatter = new Intl.NumberFormat('en-US', {
 //   style: 'currency',
