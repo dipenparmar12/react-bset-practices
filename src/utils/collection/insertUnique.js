@@ -3,9 +3,9 @@
  * @param {Array} collection
  * @param {*} newObj
  * @param {String} key
- * @returns
+ * @returns {*}
  */
-function insertUnique(collection, newObj, key) {
+function insertUnique(collection, newObj, key = 'id') {
   if (!collection?.findIndex) return collection
   if (!newObj?.[key]) return collection
 
